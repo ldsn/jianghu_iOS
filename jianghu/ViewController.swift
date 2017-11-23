@@ -14,7 +14,6 @@ class ViewController: UIViewController, WKScriptMessageHandler, WKNavigationDele
     var webView: WKWebView!
     var popView: WKWebView!
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
         let cgrect = CGRect(x: 0, y: Int(UIApplication.shared.statusBarFrame.height), width: Int(view.frame.width), height: Int(view.frame.height));
@@ -22,18 +21,10 @@ class ViewController: UIViewController, WKScriptMessageHandler, WKNavigationDele
         conifg.userContentController.add(self as WKScriptMessageHandler, name: "Test")
         webView = WKWebView(frame: cgrect, configuration: conifg)
         
-    
-        
-
-        webView.backgroundColor = UIColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 1)
-        
-        
-        
-        let myURL = URL(string: "http://jianghu.ldustu.com")
+        let myURL = URL(string: "http://jianghu.ldustu.com/")
         let myRequest = URLRequest(url: myURL!)
         webView.load(myRequest)
         
-
         webView.navigationDelegate = self
         
         
@@ -44,9 +35,13 @@ class ViewController: UIViewController, WKScriptMessageHandler, WKNavigationDele
         popView.isHidden = true
         popView.navigationDelegate = self
         
+        popView.isOpaque = false
+        popView.backgroundColor = UIColor.clear
+        popView.scrollView.backgroundColor = UIColor.clear
+        
+        
         view.addSubview(popView)
         
-
         // Do any additional setup after loading the view, typically from a nib.
     }
 
